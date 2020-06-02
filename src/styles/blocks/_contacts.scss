@@ -1,0 +1,136 @@
+.contacts-container {
+  display: flex;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.contact-form {
+  width: 50%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.contact-form__block {
+  margin-bottom: 30px;
+  position: relative;
+
+  label {
+    position: absolute;
+    background-color: #0f121b;
+    top: -10px;
+    left: 23px;
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+.contact-form__field {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #6c6e76;
+  background: none;
+  color: #ffffff;
+  padding: 10px;
+
+  &:focus {
+    border: 1px solid #0080ff;
+    outline: none;
+  }
+}
+
+#contact-form__text {
+  height: 140px;
+}
+
+.contact-form__link {
+  font-size: 18px;
+  text-transform: uppercase;
+  background-color: #047fff;
+  width: 200px;
+  height: 50px;
+  border: none;
+  color: #ffffff;
+
+  &:hover {
+    color: #0080ff;
+    background: #fff;
+  }
+}
+
+.requisites {
+  width: 50%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.requisites-phone, .requisites-mail {
+  background-color: #20222e;
+  padding-left: 115px;
+  position: relative;
+  height: 139px;
+  align-items: center;
+  display: flex;
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 25px;
+
+  &::before {
+    content: '';
+    background: url("../img/phone.svg") no-repeat 10px 10px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #6c6e76;
+    position: absolute;
+    top: 45px;
+    left: 35px;
+    background-size: 60%;
+  }
+
+  a {
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+.requisites-mail {
+  margin-bottom: 0;
+
+  &::before {
+    content: '';
+    background: url("../img/email.svg") no-repeat center;
+    background-size: 60%;
+  }
+}
+
+.thanks {
+  max-width: 600px;
+  width: 100%;
+  margin: -50px 0 0 -300px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+  display: none;
+  box-shadow: 0 0 20px 20px #047fff;
+}
+
+@media (max-width: 1200px) {
+  .contacts-container {
+    flex-direction: column;
+  }
+  .contact-form {
+    order: 1;
+    width: 100%;
+  }
+  .requisites {
+    width: 100%;
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .requisites-mail, .requisites-phone {
+    font-size: 5vw;
+  }
+}

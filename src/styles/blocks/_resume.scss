@@ -1,0 +1,163 @@
+
+.resume-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.resume-list__items {
+  width: 50%;
+  display: flex;
+  padding-bottom: 40px;
+  padding-right: 20px;
+}
+
+.resume-list__items-first {
+  width: 150px;
+  color: #ffffff;
+  font-size: 18px;
+
+  span {
+    color: #4b4e5a;
+    display: block;
+  }
+}
+
+.resume-list__items-last {
+  width: 100%;
+  height: 7px;
+  background: #2e3343;
+  margin-top: 35px;
+
+  span {
+    height: 7px;
+    background: #487efb;
+    display: block;
+  }
+}
+
+h2.content-title {
+  padding-top: 15px;
+}
+
+.experience-title {
+  font-size: 28px;
+  color: #ffffff;
+  background: url("../img/case-icon.svg") no-repeat left;
+  padding-left: 36px;
+  margin-top: 72px;
+  margin-bottom: 35px;
+  background-size: 30px;
+}
+
+h4.experience-title {
+  background: url("../img/education.svg") no-repeat left;
+  margin-top: 0;
+  background-size: 30px;
+}
+
+.experience-list {
+  margin: 0 0 60px;
+  padding: 0;
+  list-style: none;
+}
+
+.experience-list__items {
+  border-left: 3px solid #33374e;
+  position: relative;
+
+  &::before {
+    content: '';
+    border-radius: 50px;
+    border: 3px solid #33374e;
+    position: absolute;
+    top: 15px;
+    left: -6px;
+    width: 10px;
+    height: 10px;
+    background: #0f121b;
+  }
+}
+
+.experience-list__items-date {
+  padding-left: 20px;
+  font-size: 18px;
+  padding-top: 6px;
+
+  span {
+    margin-left: 34px;
+    padding-left: 52px;
+    font-size: 22px;
+    color: #487efb;
+    position: relative;
+
+    &::before {
+      content: '';
+      width: 35px;
+      height: 0.5px;
+      background-color: #487efb;
+      position: absolute;
+      left: 0;
+      top: 17px;
+    }
+  }
+}
+
+.experience-list__items-text {
+  padding-left: 265px;
+  font-size: 16px;
+  line-height: 32px;
+  padding-bottom: 60px;
+
+  span {
+    display: block;
+    color: #ffffff;
+    font-size: 18px;
+  }
+}
+
+.experience-list__items-links {
+  color: #487efb;
+}
+
+
+@media (max-width: 767px) {
+  .resume-list__items {
+    width: 100%;
+  }
+}
+
+@media (max-width: 690px) {
+  .experience-list__items-date {
+    flex-direction: column;
+    display: flex;
+
+    span {
+      margin-left: 0;
+      padding-left: 0;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+  .experience-list__items-text {
+    padding-left: 20px;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

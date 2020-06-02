@@ -1,0 +1,11 @@
+/* BEGIN general styles */
+@import "lib/bootstrap-reboot";
+@import "general/general";
+
+
+/* BEGIN blocks styles */
+@import "blocks/main";
+@import "blocks/about";
+@import "blocks/resume";
+@import "blocks/portfolio";
+@import "blocks/contacts";

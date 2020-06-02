@@ -1,0 +1,51 @@
+@@include('snippet/header.html', {
+"title": "Связь со мною"
+})
+@@include('snippet/nav.html', {
+"home": "",
+"about": "",
+"resume": "",
+"portfolio": "",
+"contacts": "nav-menu__active"
+})
+
+<main class="content">
+    <div class="container">
+        <h1 class="content-title">Связь со мною</h1>
+        <div class="contacts-container">
+            <form class="contact-form">
+                <input type="hidden" name="form_name" value="ФОРМА СВЯЗИ">
+
+                <div class="contact-form__block">
+                    <label for="contact-form__name">Введите Ваше имя*</label>
+                    <input type="text" name="your_name" id="contact-form__name" class="contact-form__field" required>
+                </div>
+                <div class="contact-form__block">
+                    <label for="contact-form__mail">Введите Ваш email*</label>
+                    <input type="email" name="your_email" id="contact-form__mail" class="contact-form__field" required>
+                </div>
+                <div class="contact-form__block">
+                    <label for="contact-form__text">Ваше сообщение*</label>
+                    <textarea name="your_massage" id="contact-form__text" class="contact-form__field" required></textarea>
+                </div>
+                <button class="contact-form__link">Отправить</button>
+            </form>
+            <div class="requisites">
+                <div class="requisites-phone">
+                    <a href="tel:79268962695" class="requisites-phone__link">+7 (926) 896 26-95</a>
+                </div>
+                <div class="requisites-mail">
+                    contacts@frontend-master.ru
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="thanks">
+    <div class="requisites-mail">
+        Спасибо за ваше письмо, я свяжусь с вами!
+    </div>
+</div>
+
+@@include('snippet/footer.html')

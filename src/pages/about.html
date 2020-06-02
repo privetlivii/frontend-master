@@ -1,0 +1,39 @@
+@@include('snippet/header.html', {
+"title": "Обо мне"
+})
+@@include('snippet/nav.html', {
+"home": "",
+"about": " nav-menu__active",
+"resume": "",
+"portfolio": "",
+"contact": ""
+})
+
+<main class="content">
+    <div class="container">
+        <h1 class="content-title">Обо мне</h1>
+        <section class="about-information">
+            <div class="about-information__photo">
+                <img src="img/photo.jpg" alt="" class="about-information__photo-image">
+            </div>
+            <div class="about-information__block">
+                <p class="about-information__block-title">Я <span>Бородин Юрий</span></p>
+                <p class="about-information__block-text">В IT сфере уже около 3-х лет, люблю верстать и решать новые задачи, позитивно смотрю на мир и самосовершенствуюсь, занимаюсь спортом и читаю книги, всё это дает мне стимул расти.</p>
+                <ul class="about-information__list">
+                    <li class="about-information__list-items"><span>ФИО</span>: Бородин Юрий Александрович</li>
+                    <li class="about-information__list-items"><span>Возраст</span>: 32 года</li>
+                    <li class="about-information__list-items"><span>Гражданство</span>: Российская Федерация</li>
+                    <li class="about-information__list-items"><span>Язык</span>: Русский</li>
+                    <li class="about-information__list-items"><span>Адрес</span>: г. Москва, район Сокол</li>
+                    <li class="about-information__list-items"><span>Телефон</span>: 8 926 896 26 95</li>
+                    <li class="about-information__list-items"><span>Фриланс </span>: Свободен</li>
+                    <li class="about-information__list-items"><span>В офис </span>: Готов</li>
+                </ul>
+            </div>
+        </section>
+
+
+    </div>
+</main>
+
+@@include('snippet/footer.html')

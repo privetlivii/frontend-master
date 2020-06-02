@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'Nunito';
+  src: url('../fonts/Nunito-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('../fonts/Nunito-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  font-family: 'Nunito', Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  background: #0f121b;
+  color: #767c91;
+}
+
+.container {
+  max-width: 1140px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.content-title {
+  font-size: 44px;
+  text-transform: uppercase;
+  position: relative;
+  margin-top: 0;
+  padding-top: 100px;
+  margin-bottom: 70px;
+  color: #ffffff;
+  width: 100%;
+
+  &::before {
+    content: '';
+    width: 52px;
+    height: 5px;
+    position: absolute;
+    background: #4981fb;
+    bottom: -15px;
+    border-radius: 90px;
+    z-index: 1;
+  }
+
+  &::after {
+    content: '';
+    width: 80px;
+    height: 5px;
+    position: absolute;
+    bottom: -15px;
+    left: 49px;
+    border-radius: 90px;
+    background: #263862;
+  }
+}
+@media (max-width: 480px) {
+  .content-title {
+    font-size: 8vw;
+  }
+}
+
+
+
