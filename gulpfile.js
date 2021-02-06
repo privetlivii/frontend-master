@@ -22,7 +22,7 @@ const imageminWebp = require("imagemin-webp");
 
 // css task
 const css = () => {
-    return src('./src/styles/styles.scss')
+    return src('./src/styles/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer())
         .pipe(rename('styles.min.css'))
