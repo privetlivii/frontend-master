@@ -1,4 +1,146 @@
-var gulp = require('gulp'),
+const {src, dest, watch, series, parallel} = require('gulp');
+const sass = require('gulp-dart-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const csso = require('gulp-csso');
+const rename = require('gulp-rename');
+const fileinclude = require('gulp-ex-file-include');
+const mode = require('gulp-mode')();
+const htmlbeautify = require('gulp-html-beautify');
+const browserSync = require('browser-sync').create();
+const concat = require('gulp-concat');
+const basePath = require('path');
+const svgmin = require('gulp-svgmin');
+const svgstore = require('gulp-svgstore');
+const uglify = require('gulp-uglify-es').default;
+const imagemin = require("gulp-imagemin");
+const imageminPngquant = require("imagemin-pngquant");
+const imageminZopfli = require("imagemin-zopfli");
+const imageminMozjpeg = require("imagemin-mozjpeg");
+const webp = require("gulp-webp");
+const imageminWebp = require("imagemin-webp");
+
+
+// css task
+const css = () => {
+    return src('./src/styles/styles.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer())
+        .pipe(rename('styles.min.css'))
+        .pipe(csso())
+        .pipe(dest('build/css'))
+        .pipe(mode.development(browserSync.stream()));
+}
+
+// js task
+const js = () => {
+    return src('./src/js/script.js')
+        .pipe(dest('./build/js'))
+        .pipe(mode.development(browserSync.stream()));
+}
+
+// copy tasks
+const copyImages = () => {
+    return src('./src/img/**/*.{jpg,jpeg,png,svg}')
+        .pipe(imagemin([
+            imageminPngquant({
+                speed: 5,
+                quality: [0.6, 0.8]
+            }),
+            imageminZopfli({
+                more: true
+            }),
+            imageminMozjpeg({
+                progressive: true,
+                quality: 90
+            }),
+            imagemin.svgo({
+                plugins: [
+                    {removeViewBox: false},
+                    {removeUnusedNS: false},
+                    {removeUselessStrokeAndFill: false},
+                    {cleanupIDs: false},
+                    {removeComments: true},
+                    {removeEmptyAttrs: true},
+                    {removeEmptyText: true},
+                    {collapseGroups: true}
+                ]
+            })
+        ]))
+        .pipe(dest('./build/img'));
+}
+
+
+const webpTask = () => {
+    return src('./src/img/**/*.{jpg,jpeg,png}')
+        .pipe(webp(imageminWebp({
+            lossless: true,
+            quality: 6,
+            alphaQuality: 85
+        })))
+        .pipe(dest('./build/img'));
+}
+
+const copyFonts = () => {
+    return src('./src/fonts/**/*.{woff,woff2}')
+        .pipe(dest('build/fonts'));
+}
+
+const copyFavicon = () => {
+    return src('./src/favicon/*.*')
+        .pipe(dest('build/favicon'));
+}
+
+const html = () => {
+    return src('./src/pages/*.html')
+        .pipe(fileinclude())
+        .pipe(mode.production(htmlbeautify()))
+        .pipe(dest('build'))
+        .pipe(mode.development(browserSync.stream()));
+}
+
+const svgStore = () => {
+    return src('./src/img/sprite/*.svg')
+        .pipe(svgmin(function (file) {
+            let prefix = basePath.basename(file.relative, basePath.extname(file.relative));
+            return {
+                plugins: [{
+                    cleanupIDs: {
+                        prefix: prefix + '-',
+                        minify: true
+                    }
+                }]
+            }
+        }))
+        .pipe(svgstore())
+        .pipe(dest('./build/img'));
+}
+
+// watch task
+const watchForChanges = () => {
+    browserSync.init({
+        server: {
+            baseDir: './build/'
+        },
+        notify: false,
+        port: 7384
+    });
+
+    watch('./src/styles/**/*.scss', css);
+    watch('./src/js/**/*.js', js);
+    watch('./src/pages/*.html', html);
+    watch('./src/img/**/*.{png,jpg,jpeg,svg}', series(copyImages));
+    watch('./src/fonts/**/*.{woff,woff2}', series(copyFonts));
+    watch('./src/favicon/*.*', series(copyFavicon));
+}
+
+// public tasks
+exports.default = series(parallel(css, js, copyImages, copyFonts, html, copyFavicon), watchForChanges);
+exports.build = series(parallel(css, js, copyImages, copyFonts, html, copyFavicon));
+exports.sprite = series(svgStore);
+exports.webpTask = series(webpTask);
+
+
+/*var gulp = require('gulp'),
     sass = require('gulp-sass'),
     browserSync = require('browser-sync'),
     rigger = require('gulp-rigger'),
@@ -13,40 +155,40 @@ var gulp = require('gulp'),
     svgmin = require('gulp-svgmin'),
     svgstore = require('gulp-svgstore'),
     imagemin = require('gulp-imagemin'),
-    ftp = require('vinyl-ftp');
+    ftp = require('vinyl-ftp');*/
 
 
-
+/*
 const paths = {
     html: {
-        src: './src/pages/*.html',
+        src: './src/pages/!*.html',
         build: './build/',
-        watch: './src/pages/**/*.html'
+        watch: './src/pages/!**!/!*.html'
     },
     styles: {
-        src: './src/styles/*.scss',
+        src: './src/styles/!*.scss',
         build: './build/css',
-        watch: './src/styles/**/*.scss'
+        watch: './src/styles/!**!/!*.scss'
     },
     js: {
-        src: './src/js/*.js',
+        src: './src/js/!*.js',
         build: './build/js',
-        watch: './src/js/**/*.js'
+        watch: './src/js/!**!/!*.js'
     },
     img: {
-        src: './src/img/**/*.*',
+        src: './src/img/!**!/!*.*',
         build: './build/img',
-        watch: './src/img/**/*.*'
+        watch: './src/img/!**!/!*.*'
     },
     favicon: {
-        src: './src/favicon/**/*.*',
+        src: './src/favicon/!**!/!*.*',
         build: './build/favicon',
-        watch: './src/favicon/**/*.*'
+        watch: './src/favicon/!**!/!*.*'
     },
     fonts: {
-        src: './src/fonts/*.*',
+        src: './src/fonts/!*.*',
         build: './build/fonts',
-        watch: './src/fonts/*.*'
+        watch: './src/fonts/!*.*'
     }
 };
 
@@ -139,4 +281,4 @@ gulp.task('watch', function () {
     gulp.watch(paths.fonts.watch, gulp.parallel('fonts'));
 });
 
-gulp.task('default', gulp.parallel('img', 'favicon', 'fonts', 'styles', 'scripts', 'code', 'browser-sync', 'watch'));
+gulp.task('default', gulp.parallel('img', 'favicon', 'fonts', 'styles', 'scripts', 'code', 'browser-sync', 'watch'));*/

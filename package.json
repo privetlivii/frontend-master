@@ -1,43 +1,59 @@
 {
-  "name": "borodin",
-  "version": "2.0.0",
+  "name": "frontend-master",
+  "version": "3.0.0",
   "description": "For works",
   "main": "gulpfile.js",
-  "directories": {
-    "test": "test"
+  "dependencies": {
+    "gulp-html-beautify": "latest",
+    "uglifyjs-webpack-plugin": "latest",
+    "babel-loader": "latest"
+  },
+  "devDependencies": {
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "browser-sync": "latest",
+    "del": "latest",
+    "gulp": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-babel": "latest",
+    "gulp-csso": "latest",
+    "gulp-dart-sass": "latest",
+    "gulp-mode": "latest",
+    "gulp-rename": "latest",
+    "gulp-sourcemaps": "latest",
+    "gulp-terser": "latest",
+    "webpack-stream": "latest",
+    "gulp-ex-file-include": "latest",
+    "gulp-uglify-es": "latest",
+    "gulp-svgmin": "latest",
+    "gulp-svgstore": "latest",
+    "svg-sprite": "latest",
+    "path": "latest",
+    "gulp-imagemin": "latest",
+    "imagemin-jpeg-recompress": "latest",
+    "imagemin-mozjpeg": "latest",
+    "imagemin-pngquant": "latest",
+    "imagemin-webp": "latest",
+    "imagemin-zopfli": "latest",
+    "gulp-webp": "latest",
+    "gulp-concat": "latest",
+    "vinyl-ftp": "latest",
+    "node-sass": "latest"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/privetlivii"
+    "url": "git+https://github.com/privetlivii/frontend-master.git"
   },
   "keywords": [
-    "project",
-    "work"
+    "key"
   ],
-  "author": "alex lenk",
+  "author": "Borodin",
   "license": "ISC",
-  "dependencies": {
-    "autoprefixer": "^9.7.6",
-    "browser-sync": "^2.26.7",
-    "gulp-ex-file-include": "^2.0.2",
-    "gulp-notify": "^3.2.0",
-    "gulp-postcss": "^8.0.0",
-    "gulp-rename": "^2.0.0",
-    "gulp-svgmin": "^2.2.0",
-    "path": "^0.12.7",
-    "vinyl-ftp": "^0.6.1"
+  "bugs": {
+    "url": "https://github.com/privetlivii/frontend-master/issues"
   },
-  "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-clean-css": "^4.3.0",
-    "gulp-imagemin": "^7.1.0",
-    "gulp-rigger": "^0.5.8",
-    "gulp-sass": "^4.0.2",
-    "gulp-svgstore": "^7.0.1",
-    "gulp-uglify-es": "^2.0.0",
-    "node-sass": "^4.13.1"
-  }
+  "homepage": "https://github.com/privetlivii/frontend-master#readme"
 }
